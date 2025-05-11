@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="shortcut icon" href="src/img/happyMenuLogo-i.ico" type="image/x-icon">
+    <title>Happy Menu</title>
+</head>
+
+<body>
+    <header class="header">
+        <section class="header__title">
+            <div class="header__logo">
+                <img src="src/img/happyMenuLogo.png" alt="happyMenuLogo">
+            </div>
+        </section>
+        <section class="header__nav">
+            <button class="header__nav-btn" id="btnSiteMenu">Ordenar</button>
+            <button class="header__nav-btn" id="btnSiteOrdenes">Ver ordenes</button>
+        </section>
+    </header>
+    <main class="main">
+        <article class="main__article " id="artMenu">
+            <h2>Menú</h2>
+
+            <p id="menuAlert"></p>
+            <form class="main__form">
+                <fieldset class="main__fieldset" id="menuStarters">
+                    <legend class="main__legend">Entradas</legend>
+                    <!-- <div class="main__food">
+                        <div class="main__input">
+                            <button class="main__btn menu__btn--round">-</button>
+                            <input type="number" value="0" min="0" max="10" >
+                            <button class="main__btn menu__btn--round">+</button>
+                        </div>
+                        <div class="main__information">
+                            <i class="fa-solid fa-pizza-slice"></i>
+                            <p >Pizza</p>
+                        </div>
+                    </div> -->
+                </fieldset>
+                <fieldset class="main__fieldset" id="menuMain">
+                    <legend class="main__legend">Comida</legend>
+
+                </fieldset>
+                <fieldset class="main__fieldset" id="menuDeserts">
+                    <legend class="main__legend">Postres</legend>
+
+                </fieldset>
+                <fieldset class="main__fieldset" id="menuDrinks">
+                    <legend class="main__legend">bebidas</legend>
+
+                </fieldset>
+                <section class="main__btn-section">
+                    <input type="submit" value="Ordenar" class="main__btn main__btn--submit" id="btnSubmitOrdenar">
+                </section>
+            </form>
+        </article>
+
+        <article class="main__article hidden" id="artOrder">
+            <h2>Ordenes</h2>
+            <p id="orderAlert"></p>
+            <section class="main__cards" id="ordenesCards">
+
+            </section>
+        </article>
+    </main>
+    <footer class="footer">
+        <p class="footer__copy">Copyright &copy; 2025 <a href="https://github.com/MLuisaGP">MluisaG</a> </p>
+    </footer>
+</body>
+
+</html>
