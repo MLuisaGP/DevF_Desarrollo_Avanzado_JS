@@ -73,9 +73,7 @@ function preparaSeccionMenu(){
             if (e.target.value>5)e.target.value=5;
             else if (e.target.value<0)e.target.value=0;
             alimento.cantidad = e.target.value;
-            updateCurrentOrdenRAM(alimento);
-            console.log(orden);
-            
+            updateCurrentOrdenRAM(alimento);            
         })
 
         const btnMenos = document.createElement('BUTTON');
@@ -181,17 +179,18 @@ function insertarCardDeOrden(ordenU){
 function updateCurrentOrdenRAM(alimento) {
     let elemento = orden.find((ele) => ele.id === alimento.id);
     if (!elemento) {
-        orden.push({
+        elemento = {
             id: alimento.id,
             icono: alimento.icono,
             label: alimento.label,
             cantidad: alimento.cantidad,
             time: alimento.time
-        });
-        return;
+        }
+        orden.push(elemento);
+
     }
     elemento.cantidad = alimento.cantidad;
-    orden = orden.filter(ele => ele.cantidad > 0);
+    orden = orden.filter(ele =>( ele.cantidad > 0));
     // {id=1,nombre=pizza,cant =1}
 }
 
