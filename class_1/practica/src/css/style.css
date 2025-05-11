@@ -181,6 +181,9 @@ body {
     width: 90%;
   }
 }
+.main__btn--sucesful {
+  background-color: #008700;
+}
 .main__information {
   flex: 1;
   display: flex;

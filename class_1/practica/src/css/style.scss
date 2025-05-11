@@ -210,7 +210,9 @@ body {
                 width: 90%;
             }
         }
-
+        &--sucesful{
+            background-color: $color-alert-good;
+        }
 
     }
 

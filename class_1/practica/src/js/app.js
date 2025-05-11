@@ -150,8 +150,11 @@ function insertarCardDeOrden(ordenU){
     btnL.disabled = true;
     btnL.textContent = 'Preparando ...';
     btnL.addEventListener('click',()=>{
-        eliminarOrden(ordenU);
-
+        btnL.textContent='Entregando...';
+        btnL.disabled=true;
+        setTimeout(() => {
+            eliminarOrden(ordenU);
+        }, 1000);
     })
 
     ordenU.orden.forEach((alimento)=>{
