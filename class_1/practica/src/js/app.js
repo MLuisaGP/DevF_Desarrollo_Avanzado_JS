@@ -1,8 +1,8 @@
 import { Alimento, listaAlimentos } from "./Alimentos.js";
-import { orden, ordenes } from "./Variables.js";
 
 //BOTON PARA GENERAR ORDEN
-
+let ordenes = JSON.parse(localStorage.getItem('ordenes')) || [];
+let orden = [];
 
 document.addEventListener("DOMContentLoaded",()=>{
     start();
@@ -73,7 +73,7 @@ function preparaSeccionMenu(){
             if (e.target.value>5)e.target.value=5;
             else if (e.target.value<0)e.target.value=0;
             alimento.cantidad = e.target.value;
-            updateOrden(alimento);
+            updateCurrentOrdenRAM(alimento);
             console.log(orden);
             
         })
@@ -86,7 +86,7 @@ function preparaSeccionMenu(){
             if(alimento.cantidad<=0)return;
             alimento.cantidad -= 1;
             foodCantidad.value = alimento.cantidad;
-            updateOrden(alimento);
+            updateCurrentOrdenRAM(alimento);
             
             
         });
@@ -98,7 +98,7 @@ function preparaSeccionMenu(){
             if (alimento.cantidad >= 5) return;
             alimento.cantidad += 1;
             foodCantidad.value = alimento.cantidad;
-            updateOrden(alimento);
+            updateCurrentOrdenRAM(alimento);
             
         })
         mainInput.appendChild(btnMenos);
@@ -193,10 +193,10 @@ function updateCurrentOrdenRAM(alimento) {
 }
 
 //Elimina orden ya creada y que se encuentra dentro de la lista de ordenes
-function eliminarOrden(orden) {
-    ordenes = ordenes.filter((e) => e.id !== orden.id);
+function eliminarOrden(ord) {
+    ordenes = ordenes.filter((e) => e.id !== ord.id);
     localStorage.setItem('ordenes', JSON.stringify(ordenes));
-    const nodo = document.getElementById(`cardOrden${orden.id}`);
+    const nodo = document.getElementById(`cardOrden${ord.id}`);
     if (nodo) {
         nodo.remove();
     }
