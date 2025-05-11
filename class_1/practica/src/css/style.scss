@@ -239,6 +239,9 @@ body {
         grid-template-columns: repeat(3,1fr);
         // grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
         gap: 1rem;
+        @include mobile(){
+            grid-template-columns: repeat(1,1fr);
+        }
     }
     
     &__card{
@@ -269,6 +272,7 @@ body {
     font-size: 0.9rem;
     text-align: left;
     padding: 0.5rem;
+    width: 100%;
     &--warning{
             background-color: rgba($color-alert-warning, 0.1); //Hace mas claro el fondo
             border-left: 0.5rem solid $color-alert-warning;
