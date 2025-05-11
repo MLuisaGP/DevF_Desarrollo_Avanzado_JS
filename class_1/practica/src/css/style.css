@@ -51,7 +51,7 @@ body {
   align-self: center;
 }
 .header__logo {
-  width: clamp(15rem, 15vw, 20rem);
+  width: clamp(5rem, 10vw, 10rem);
 }
 .header__nav {
   width: 100%;
