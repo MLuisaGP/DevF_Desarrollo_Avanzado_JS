@@ -1,63 +1,58 @@
-import { Alimento } from "./Alimentos.js";
-// localStorage.clear();   
-const listaAlimentos = [
-    new Alimento('Pizza', "fa-solid fa-pizza-slice", 9000, "Main"),
-    new Alimento('Pollo', "fa-solid fa-drumstick-bite", 4000, "Main"),
-    new Alimento('Hamburgesa', "fa-solid fa-burger", 3500, "Main"),
-    new Alimento('Ensalada', 'fa-solid fa-bowl-food', 4000, "Starters"),
-    new Alimento('Chiles Torreados', 'fa-solid fa-pepper-hot', 7500, "Starters"),
-    new Alimento('Arroz', 'fa-solid fa-bowl-rice', 3000, "Starters"),
-    new Alimento('Cupcake', 'fa-solid fa-bread-slice', 5000, "Deserts"),
-    new Alimento('Pastel', 'fa-solid fa-cake-candles', 2000, "Deserts"),
-    new Alimento('Cafe', "fa-solid fa-mug-saucer", 3000, "Drinks"),
-    new Alimento('Agua', "fa-solid fa-bottle-water", 3000, "Drinks"),
-];
-let ordenes = JSON.parse(localStorage.getItem('ordenes')) || [];
-let orden=[];
+import { Alimento, listaAlimentos } from "./Alimentos.js";
+import { orden, ordenes } from "./Variables.js";
 
-const btnOrdenar = document.getElementById("btnSubmitOrdenar");
-btnOrdenar.addEventListener("click",(e)=>{
-    e.preventDefault();
-    if(!orden.length){
-        addAlert("menuAlert", "dangerous", "Favor de escoger algun alimento.", true);
-        return;
-    }
-    if(ordenes.length>=9){
-        addAlert("menuAlert", "dangerous", "Nos encontramos saturados, favor de esperar un poco...", true);
-        return;
-    }
-    const id = crypto.randomUUID();
-    ordenes.push({ id: id,orden: orden});
-    localStorage.setItem('ordenes', JSON.stringify(ordenes));
-    listaAlimentos.forEach((alimento) => alimento.reset());
-    document.querySelectorAll("input[type='number']").forEach(element=>{
-        element.value = 0;
-    });
-    insertarOrden({id: id, orden: orden});
-    orden=[];
-    addAlert("menuAlert", "good", `Tu orden #${id.slice(0, 4).toUpperCase()} se ha creado.`, true);
-});
+//BOTON PARA GENERAR ORDEN
+
 
 document.addEventListener("DOMContentLoaded",()=>{
     start();
 })
-
-document.getElementById('btnSiteMenu').addEventListener('click',()=>{
-    document.getElementById('artMenu').classList.remove('hidden');
-    document.getElementById('artOrder').classList.add('hidden');
-});
-
-document.getElementById('btnSiteOrdenes').addEventListener('click',(e)=>{
-    e.preventDefault();
-    document.getElementById('artMenu').classList.add('hidden');
-    document.getElementById('artOrder').classList.remove('hidden');
-});
-
-function start(){
-    preparaMenu();
-    prepararOrdenes();
+function start() {
+    preparaSeccionMenu();
+    prepararSeccionOrdenes();
+    definirEventos();
 }
-function preparaMenu(){
+function definirEventos(){
+    const btnOrdenar = document.getElementById("btnSubmitOrdenar");
+    btnOrdenar.addEventListener("click", (e) => generarOrdenBTNEvento(e));
+    document.getElementById('btnSiteMenu').addEventListener('click', () => {
+        document.getElementById('artMenu').classList.remove('hidden');
+        document.getElementById('artOrder').classList.add('hidden');
+    });
+
+    document.getElementById('btnSiteOrdenes').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('artMenu').classList.add('hidden');
+        document.getElementById('artOrder').classList.remove('hidden');
+    });
+
+}
+
+function generarOrdenBTNEvento(e){
+    e.preventDefault(); //prevenir que no se recarge la pagina
+
+    if (!orden.length) { //Si las ordenes son igual a 0 entonces mostrar alerta
+        addAlert("menuAlert", "dangerous", "Favor de escoger algun alimento.", true);
+        return;
+    }
+    if (ordenes.length >= 9) {//Si hay mas de  pedidos entonces no permite crear mas ordenes
+        addAlert("menuAlert", "dangerous", "Nos encontramos saturados, favor de esperar un poco...", true);
+        return;
+    }
+    const id = crypto.randomUUID(); //genera un id unico para la orden.
+    ordenes.push({ id: id, orden: orden });
+    localStorage.setItem('ordenes', JSON.stringify(ordenes)); //lo almacenamos en el localstorage
+    listaAlimentos.forEach((alimento) => alimento.reset());
+    document.querySelectorAll("input[type='number']").forEach(element => {
+        element.value = 0;
+    });
+    insertarCardDeOrden({ id: id, orden: orden });
+    orden = [];
+    addAlert("menuAlert", "good", `Tu orden #${id.slice(0, 4).toUpperCase()} se ha creado.`, true);
+}
+
+//FUNCION QUE CREA EL MENU
+function preparaSeccionMenu(){
     let flag = 0;
     listaAlimentos.forEach((alimento)=>{
         const container = document.getElementById(alimento.getContainer());
@@ -128,16 +123,18 @@ function preparaMenu(){
     }
 }
 
-function prepararOrdenes(){
+// FUNCTION QUE CREA SECCION DE ORDENES
+function prepararSeccionOrdenes(){
     if(ordenes.length<=0){
         addAlert("orderAlert", "good", "No hay ordenes.", false);
         return
     }
     ordenes.forEach((orden)=>{
-        insertarOrden(orden);
+        insertarCardDeOrden(orden);
     });
 }
-function insertarOrden(ordenU){
+
+function insertarCardDeOrden(ordenU){
     removeAlert('orderAlert');
     // console.log('orden ins:',ordenU);
     
@@ -162,7 +159,7 @@ function insertarOrden(ordenU){
         lista.innerHTML = `<i class='${alimento.icono}'></i>
         ${alimento.label} <span>0</span>/${alimento.cantidad}`
         listaUl.appendChild(lista);
-        actualizar(lista, alimento)
+        preparar(lista, alimento)
         .then(resolve=>{
             cantidadA -=1;
             if (cantidadA == 0){
@@ -177,14 +174,48 @@ function insertarOrden(ordenU){
     container.appendChild(card);
 }
 
-async function actualizar(nodo,alimento){
+//Actualiza la orden que se esta generando pero aun no se termina de crear por el cliente.
+function updateCurrentOrdenRAM(alimento) {
+    let elemento = orden.find((ele) => ele.id === alimento.id);
+    if (!elemento) {
+        orden.push({
+            id: alimento.id,
+            icono: alimento.icono,
+            label: alimento.label,
+            cantidad: alimento.cantidad,
+            time: alimento.time
+        });
+        return;
+    }
+    elemento.cantidad = alimento.cantidad;
+    orden = orden.filter(ele => ele.cantidad > 0);
+    // {id=1,nombre=pizza,cant =1}
+}
+
+//Elimina orden ya creada y que se encuentra dentro de la lista de ordenes
+function eliminarOrden(orden) {
+    ordenes = ordenes.filter((e) => e.id !== orden.id);
+    localStorage.setItem('ordenes', JSON.stringify(ordenes));
+    const nodo = document.getElementById(`cardOrden${orden.id}`);
+    if (nodo) {
+        nodo.remove();
+    }
+    if (ordenes.length <= 0) {
+        addAlert("orderAlert", "good", "No hay ordenes.", false);
+        return
+    }
+}
+
+// funcion principal para acualizar el estado de un alimento que se esta preparando
+async function preparar(nodo,alimento){
     const span = nodo.querySelector('span');
     const cantidad = alimento.cantidad;
-    await preparando(span, cantidad,alimento.time);
+    await actualizarCantidadPreparada(span, cantidad,alimento.time);
     nodo.classList.add('ready');
 }
 
-async function preparando(nodo,cantidad,tiempo){
+//les asigna el tiempo correspondiente segun el tipo de comida que se solicito y la cantidad de esa comida.
+async function actualizarCantidadPreparada(nodo,cantidad,tiempo){
     for (let i = 0; i < cantidad; i++) {
         await new Promise(resolve => {
             setTimeout(() => {
@@ -195,19 +226,8 @@ async function preparando(nodo,cantidad,tiempo){
     }
 }
 
-function eliminarOrden(orden){
-    ordenes = ordenes.filter((e)=>e.id!==orden.id);
-    localStorage.setItem('ordenes', JSON.stringify(ordenes));
-    const nodo = document.getElementById(`cardOrden${orden.id}`);
-    if(nodo){
-        nodo.remove();
-    }
-    if (ordenes.length <= 0) {
-        addAlert("orderAlert", "good", "No hay ordenes.", false);
-        return
-    }
-}
 
+//Manejo de Alertas
 function addAlert(idAlert,type,msn,temporal){
     const alertContainer = document.getElementById(idAlert);
     alertContainer.classList.add('alert',`alert--${type}`) ;
@@ -226,19 +246,3 @@ function removeAlert(idAlert){
     alertContainer.outerHTML = `<p id=${idAlert}></p>`;
 }
 
-function updateOrden(alimento){
-    let elemento = orden.find((ele)=>ele.id === alimento.id);
-    if(!elemento){
-        orden.push({
-            id:alimento.id,
-            icono:alimento.icono,
-            label: alimento.label,
-            cantidad:alimento.cantidad,
-            time: alimento.time
-        });
-        return;
-    }
-    elemento.cantidad = alimento.cantidad;
-    orden = orden.filter(ele => ele.cantidad > 0);
-    // {id=1,nombre=pizza,cant =1}
-}
