@@ -14,7 +14,7 @@ body {
 
 .btn {
   font-size: 1.1em;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   background-color: transparent;
   border-radius: 0.4rem;
@@ -33,6 +33,10 @@ body {
 }
 .btn--danger {
   background-color: #ff4b4b;
+  color: #FFF;
+}
+.btn--submit {
+  background-color: #566683;
   color: #FFF;
 }
 
@@ -162,6 +166,11 @@ body {
   width: 100%;
   flex: 1;
   overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .tabla {
@@ -188,4 +197,31 @@ body {
 }
 .tabla__status {
   font-size: inherit;
+}
+
+.form {
+  width: min(100%, 45rem);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 0;
+  padding: 2rem;
+}
+.form__input-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+.form__input {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: inset 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
 }/*# sourceMappingURL=style.css.map */

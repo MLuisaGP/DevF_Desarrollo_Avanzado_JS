@@ -41,7 +41,7 @@ body {
 }
 .btn {
     font-size: 1.1em;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     border: none;
     background-color: transparent;
     border-radius: 0.4rem;
@@ -61,6 +61,10 @@ body {
     }
     &--danger {
         background-color: $color--danger;
+        color: $color-white;
+    }
+    &--submit{
+        background-color: $color-secundary;
         color: $color-white;
     }
 }
@@ -192,6 +196,7 @@ body {
         width: 100%;
         flex: 1;
         overflow-x: scroll;
+        @include containerFlex()
     }
 }
 
@@ -222,5 +227,24 @@ body {
     }
     &__status{
         font-size: inherit;
+    }
+}
+
+.form{
+    width: min(100%,45rem);
+    box-sizing: border-box;
+    @include containerFlex(column, center, space-evenly,0);
+    padding: 2rem;
+    &__input-container{
+        width: 100%;
+        @include containerFlex(row);
+        padding:  2rem;
+    }
+    &__input{
+        flex: 1;
+        padding: 1rem;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: inset 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
     }
 }
