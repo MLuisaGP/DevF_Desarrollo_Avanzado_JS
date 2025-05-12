@@ -6,6 +6,8 @@ $color-fourth: #E9E6C9;
 $color-white: #FFF;
 $color-whitebg: #D9D9D9;
 $color-black: #292727;
+$color--success: #68cc68;
+$color--danger: #ff4b4b;
 //MIXIN
 
 @mixin containerFlex($direction: column, $alignItem: center, $justifyContent: center, $gap: 1rem) {
@@ -37,7 +39,36 @@ body {
     background-color: $color-whitebg;
     display: flex;
 }
+.btn {
+    font-size: 1.1em;
+    padding: 0.5rem;
+    border: none;
+    background-color: transparent;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 350ms ease;
 
+    @include hover(){
+        &:hover{
+            transform: scale(1.05);
+        }
+    }
+
+    &--success {
+        background-color: $color--success;
+        color: $color-secundary;
+    }
+    &--danger {
+        background-color: $color--danger;
+        color: $color-white;
+    }
+}
+.txt{
+    &--center{
+        text-align: center;
+    }
+}
 .sideheader {
     background-color: $color-main;
     // width: 100vw;
@@ -46,7 +77,7 @@ body {
     box-sizing: border-box;
     border-radius: 0 0.5rem 0.5rem 0;
     @include containerFlex(column, center, center, 4rem);
-    overflow: hidden;
+    overflow-y: hidden;
     transition: width 1 ease;
 
     @include hover() {
@@ -121,7 +152,8 @@ body {
     &__footer {
         padding: 1rem 2rem;
         color: $color-white;
-        a{
+
+        a {
             color: #CA6144;
             font-size: inherit;
             font-weight: 900;
@@ -132,32 +164,63 @@ body {
 
 }
 
-// .sideheader:hover {
-//     width: 25vh;
-// }
+.main {
+    flex: 1;
+    @include containerFlex(column, center, center, 2rem);
 
-// .sideheader:hover a {
-//     border-bottom: 1px solid rgba(255, 255, 255, 0.4039215686);
-// }
+}
 
-// .sideheader nav {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 2rem;
-// }
+.article {
+    background-color: $color-white;
+    box-sizing: border-box;
+    width: 80%;
+    height: 80vh;
+    border-radius: 0.5rem;
+    box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
+    padding: clamp(1rem, 2vw, 5rem);
+    @include containerFlex(column, flex-start, flex-start, clamp(1rem, 2vw, 3rem));
 
-// .sideheader a {
-//     text-decoration: none;
-//     display: flex;
-//     color: #fff;
-//     gap: 3rem;
-//     border-radius: 5px;
-//     padding: 1rem 0.3rem;
-//     transition: 300ms;
-// }
+    &__titulos {
+        width: 100%;
+        font-size: clamp(1.5rem, 2vw, 2rem);
+        font-weight: 700;
+        color: #CA6144;
+        text-align: center;
+    }
 
-// .sideheader a:hover {
-//     background-color: rgba(255, 255, 255, 0.1764705882);
-// }
+    &__main {
+        width: 100%;
+        flex: 1;
+        overflow-x: scroll;
+    }
+}
 
-/*# sourceMappingURL=style.css.map */
+.tabla {
+    width: 100%;
+    overflow-y: scroll;
+
+    &__header {
+        background-color: $color-secundary;
+        color: $color-white;
+        padding: 1rem;
+    }
+
+    &__th {
+        padding: 1rem;
+        text-align: left;
+        &:first-child {
+            border-top-left-radius: 0.8rem;
+        }
+
+        &:last-child {
+            border-top-right-radius: 0.8rem;
+        }
+    }
+
+    &__td{
+        padding: 1rem;
+    }
+    &__status{
+        font-size: inherit;
+    }
+}

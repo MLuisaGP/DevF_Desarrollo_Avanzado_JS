@@ -27,37 +27,36 @@
             <p class="sideheader__dinamic">Copyright &copy; 2025 <a target="_blank" href="https://github.com/MLuisaGP">MluisaG</a> </p>
         </section>
     </header>
-    <main>
-        <article class="main-article">
-            <hgroup class="main-article__titulos">
-                <h2>Lista de Libros</h2>
-            </hgroup>
-            <hgroup class="main-article__titulos">
+    <main class="main">
+        <article class="article">
+            <hgroup class="article__titulos">
                 <h2>Registrar Libro</h2>
             </hgroup>
-            <form action="" class="form">
-                <section class="form__input-container">
-                    <label class="form__label" for="title">Titulo</label>
-                    <input class="form__input" type="text" id="titulo" placeholder="Ingresa el titulo" required>
-                </section>
-                <section class="form__input-container">
-                    <label class="form__label" for="title">Autor</label>
-                    <input class="form__input" type="text" id="autor" placeholder="Ingresa el Autor" required>
-                </section>
-                <section class="form__input-container">
-                    <label class="form__label" for="title">Genero</label>
-                    <select class="form__input form__input--selector" name="genero" id="genero" required>
-                        <option value="" disabled selected>--Seleciona--</option>
-                        <option value="romance">Romance</option>
-                        <option value="terror">terror</option>
-                        <option value="ciencia-ficion">ciencia ficion</option>
-                        <option value="psicologia">Psicologia</option>
-                        <option value="suspenso">Suspenso</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </section>
-                <input class="btn btn--submit" id="btnSubmitForm" type="submit" value="Registrar">
-            </form>
+            <section class="article__main">
+                <form action="" class="form">
+                    <section class="form__input-container">
+                        <label class="form__label" for="title">Titulo</label>
+                        <input class="form__input" type="text" id="titulo" placeholder="Ingresa el titulo" required>
+                    </section>
+                    <section class="form__input-container">
+                        <label class="form__label" for="title">Autor</label>
+                        <input class="form__input" type="text" id="autor" placeholder="Ingresa el Autor" required>
+                    </section>
+                    <section class="form__input-container">
+                        <label class="form__label" for="title">Genero</label>
+                        <select class="form__input form__input--selector" name="genero" id="genero" required>
+                            <option value="" disabled selected>--Seleciona--</option>
+                            <option value="romance">Romance</option>
+                            <option value="terror">terror</option>
+                            <option value="ciencia-ficion">ciencia ficion</option>
+                            <option value="psicologia">Psicologia</option>
+                            <option value="suspenso">Suspenso</option>
+                            <option value="otro">Otro</option>
+                        </select>
+                    </section>
+                    <input class="btn btn--submit" id="btnSubmitForm" type="submit" value="Registrar">
+                </form>
+            </section>
         </article>
     </main>
 </body>
