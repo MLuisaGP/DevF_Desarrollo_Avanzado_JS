@@ -1,0 +1,163 @@
+// variables
+$color-main: #393E51;
+$color-secundary: #566683;
+$color-third: #CA6144;
+$color-fourth: #E9E6C9;
+$color-white: #FFF;
+$color-whitebg: #D9D9D9;
+$color-black: #292727;
+//MIXIN
+
+@mixin containerFlex($direction: column, $alignItem: center, $justifyContent: center, $gap: 1rem) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justifyContent;
+    align-items: $alignItem;
+    gap: $gap;
+}
+
+@mixin hover {
+    @media (hover:hover) {
+        @content;
+    }
+}
+
+
+*,
+body {
+    font-family: "Scada", sans-serif;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+body {
+    background-color: $color-whitebg;
+    display: flex;
+}
+
+.sideheader {
+    background-color: $color-main;
+    // width: 100vw;
+    height: 100vh;
+    padding: 1.5rem 0;
+    box-sizing: border-box;
+    border-radius: 0 0.5rem 0.5rem 0;
+    @include containerFlex(column, center, center, 4rem);
+    overflow: hidden;
+    transition: width 1 ease;
+
+    @include hover() {
+        &:hover {
+            .sideheader__dinamic {
+                font-size: 1.1rem;
+                filter: opacity(1);
+                transition: 300ms ease-in;
+                padding-right: 1.5rem;
+
+            }
+        }
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 900;
+        color: $color-whitebg;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: 350ms ease;
+
+        @include hover() {
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    &__nav {
+        width: 100%;
+        box-sizing: border-box;
+        align-self: flex-start;
+        flex: 2;
+        @include containerFlex(column, flex-start, flex-start, 4rem);
+        padding-left: 1.5rem;
+
+    }
+
+    &__link {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 1rem 0rem 1rem 2rem;
+        color: #D9D9D9;
+        font-size: 1.1rem;
+        display: flex;
+        @include containerFlex(row, flex-start, flex-start, 2rem);
+        border-radius: 1rem 0 0 1rem;
+        transition: 300ms ease-out;
+
+        @include hover() {
+            &:hover {
+                background-color: #CA6144;
+            }
+        }
+
+        &--active {
+            background-color: $color-whitebg;
+            color: $color-black;
+        }
+    }
+
+    &__dinamic {
+        font-size: 0;
+        filter: opacity(0);
+        // color: transparent;
+        transition: 300ms ease-out;
+    }
+
+    &__footer {
+        padding: 1rem 2rem;
+        color: $color-white;
+        a{
+            color: #CA6144;
+            font-size: inherit;
+            font-weight: 900;
+        }
+    }
+
+
+
+}
+
+// .sideheader:hover {
+//     width: 25vh;
+// }
+
+// .sideheader:hover a {
+//     border-bottom: 1px solid rgba(255, 255, 255, 0.4039215686);
+// }
+
+// .sideheader nav {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 2rem;
+// }
+
+// .sideheader a {
+//     text-decoration: none;
+//     display: flex;
+//     color: #fff;
+//     gap: 3rem;
+//     border-radius: 5px;
+//     padding: 1rem 0.3rem;
+//     transition: 300ms;
+// }
+
+// .sideheader a:hover {
+//     background-color: rgba(255, 255, 255, 0.1764705882);
+// }
+
+/*# sourceMappingURL=style.css.map */
