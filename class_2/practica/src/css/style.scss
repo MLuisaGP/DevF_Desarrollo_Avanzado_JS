@@ -8,7 +8,8 @@ $color-whitebg: #D9D9D9;
 $color-black: #292727;
 $color--success: #68cc68;
 $color--danger: #ff4b4b;
-//MIXIN
+$screen--mobile: 50em;
+//screen
 
 @mixin containerFlex($direction: column, $alignItem: center, $justifyContent: center, $gap: 1rem) {
     display: flex;
@@ -24,6 +25,11 @@ $color--danger: #ff4b4b;
     }
 }
 
+@mixin mobile {
+    @media screen and (max-width: $screen--mobile) {
+        @content;
+    }
+}
 
 *,
 body {
@@ -37,8 +43,15 @@ a {
 
 body {
     background-color: $color-whitebg;
+    height: 100vh;
     display: flex;
+    align-items: center;
+
+    @include mobile() {
+        flex-direction: column;
+    }
 }
+
 .btn {
     font-size: 1.1em;
     padding: 0.5rem 1rem;
@@ -49,8 +62,8 @@ body {
     font-weight: 700;
     transition: 350ms ease;
 
-    @include hover(){
-        &:hover{
+    @include hover() {
+        &:hover {
             transform: scale(1.05);
         }
     }
@@ -59,20 +72,24 @@ body {
         background-color: $color--success;
         color: $color-secundary;
     }
+
     &--danger {
         background-color: $color--danger;
         color: $color-white;
     }
-    &--submit{
+
+    &--submit {
         background-color: $color-secundary;
         color: $color-white;
     }
 }
-.txt{
-    &--center{
+
+.txt {
+    &--center {
         text-align: center;
     }
 }
+
 .sideheader {
     background-color: $color-main;
     // width: 100vw;
@@ -84,13 +101,31 @@ body {
     overflow-y: hidden;
     transition: width 1 ease;
 
+    @include mobile() {
+        width: 100%;
+        flex-direction: row;
+        padding: 1rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        justify-self: start;
+        height: auto;
+        gap: 1rem;
+    }
+
     @include hover() {
         &:hover {
             .sideheader__dinamic {
-                font-size: 1.1rem;
+                font-size: 1rem;
                 filter: opacity(1);
                 transition: 300ms ease-in;
                 padding-right: 1.5rem;
+
+                @include mobile() {
+                    font-size: 0.8;
+                    padding-right: 0;
+                }
 
             }
         }
@@ -111,6 +146,10 @@ body {
                 transform: scale(1.05);
             }
         }
+
+        // @include mobile() {
+        //     color: $color-main;
+        // }
     }
 
     &__nav {
@@ -120,6 +159,14 @@ body {
         flex: 2;
         @include containerFlex(column, flex-start, flex-start, 4rem);
         padding-left: 1.5rem;
+
+        @include mobile() {
+            flex-direction: row;
+            align-items: center;
+            height: 100%;
+            gap: 0.5rem;
+
+        }
 
     }
 
@@ -134,15 +181,31 @@ body {
         border-radius: 1rem 0 0 1rem;
         transition: 300ms ease-out;
 
+        @include mobile() {
+            background-color: transparent;
+            gap: 1rem;
+        }
+
         @include hover() {
             &:hover {
                 background-color: #CA6144;
+
+                @include mobile() {
+                    background-color: transparent;
+                    color: $color-third;
+                }
             }
+
         }
 
         &--active {
             background-color: $color-whitebg;
             color: $color-black;
+
+            @include mobile() {
+                background-color: transparent;
+                color: $color-third;
+            }
         }
     }
 
@@ -151,6 +214,11 @@ body {
         filter: opacity(0);
         // color: transparent;
         transition: 300ms ease-out;
+
+        @include mobile() {
+            font-size: 0.8rem;
+            filter: opacity(1);
+        }
     }
 
     &__footer {
@@ -162,6 +230,10 @@ body {
             font-size: inherit;
             font-weight: 900;
         }
+
+        @include mobile() {
+            display: none;
+        }
     }
 
 
@@ -169,9 +241,8 @@ body {
 }
 
 .main {
-    flex: 1;
+    width: 100%;
     @include containerFlex(column, center, center, 2rem);
-
 }
 
 .article {
@@ -181,28 +252,33 @@ body {
     height: 80vh;
     border-radius: 0.5rem;
     box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
-    padding: clamp(1rem, 2vw, 5rem);
+    padding: clamp(0.2rem, 2vw, 5rem);
     @include containerFlex(column, flex-start, flex-start, clamp(1rem, 2vw, 3rem));
-
+    overflow: hidden;
+    @include mobile() {
+        width: 90%;
+        }
     &__titulos {
         width: 100%;
         font-size: clamp(1.5rem, 2vw, 2rem);
         font-weight: 700;
-        color: #CA6144;
+        color: $color-third;
         text-align: center;
     }
 
     &__main {
+        padding: 1rem;
         width: 100%;
         flex: 1;
         overflow-x: scroll;
-        @include containerFlex()
+        @include containerFlex();
     }
 }
 
 .tabla {
+    box-sizing: border-box;
     width: 100%;
-    overflow-y: scroll;
+    overflow: scroll;
 
     &__header {
         background-color: $color-secundary;
@@ -213,6 +289,7 @@ body {
     &__th {
         padding: 1rem;
         text-align: left;
+
         &:first-child {
             border-top-left-radius: 0.8rem;
         }
@@ -222,25 +299,28 @@ body {
         }
     }
 
-    &__td{
+    &__td {
         padding: 1rem;
     }
-    &__status{
+
+    &__status {
         font-size: inherit;
     }
 }
 
-.form{
-    width: min(100%,45rem);
+.form {
+    width: 100%;
     box-sizing: border-box;
-    @include containerFlex(column, center, space-evenly,0);
+    @include containerFlex(column, center, space-evenly, 0);
     padding: 2rem;
-    &__input-container{
+
+    &__input-container {
         width: 100%;
         @include containerFlex(row);
-        padding:  2rem;
+        padding: 2rem;
     }
-    &__input{
+
+    &__input {
         flex: 1;
         padding: 1rem;
         border: none;
