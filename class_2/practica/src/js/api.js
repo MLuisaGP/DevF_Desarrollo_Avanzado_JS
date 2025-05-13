@@ -1,0 +1,45 @@
+
+let libros = JSON.parse(localStorage.getItem(libros)||[])  || [
+    { id: 1, titulo: "Cien años de soledad", autor: "Gabriel García Márquez", genero: "Ficción", disponible: true },
+    { id: 2, titulo: "1984", autor: "George Orwell", genero: "Suspenso", disponible: false },
+    { id: 3, titulo: "Orgullo y prejuicio", autor: "Jane Austen", genero: "Romance", disponible: true },
+    { id: 4, titulo: "El principito", autor: "Antoine de Saint-Exupéry", genero: "Otro", disponible: true },
+    { id: 5, titulo: "Don Quijote de la Mancha", autor: "Miguel de Cervantes", genero: "Ficción", disponible: false },
+    { id: 6, titulo: "Fahrenheit 451", autor: "Ray Bradbury", genero: "Ficción", disponible: true },
+    { id: 7, titulo: "Crónica de una muerte anunciada", autor: "Gabriel García Márquez", genero: "Suspenso", disponible: true },
+    { id: 8, titulo: "El alquimista", autor: "Paulo Coelho", genero: "Ficción", disponible: false },
+    { id: 9, titulo: "Los juegos del hambre", autor: "Suzanne Collins", genero: "Suspenso", disponible: true },
+    { id: 10, titulo: "Harry Potter y la piedra filosofal", autor: "J.K. Rowling", genero: "Ficción", disponible: true },
+    { id: 11, titulo: "El señor de los anillos", autor: "J.R.R. Tolkien", genero: "Ficción", disponible: false },
+    { id: 12, titulo: "Drácula", autor: "Bram Stoker", genero: "Terror", disponible: true },
+    { id: 13, titulo: "Matar a un ruiseñor", autor: "Harper Lee", genero: "Drama", disponible: true },
+    { id: 14, titulo: "El código Da Vinci", autor: "Dan Brown", genero: "Terror", disponible: false },
+    { id: 15, titulo: "Rebelión en la granja", autor: "George Orwell", genero: "Psicologia", disponible: true },
+    { id: 16, titulo: "La sombra del viento", autor: "Carlos Ruiz Zafón", genero: "Misterio", disponible: true },
+    { id: 17, titulo: "It", autor: "Stephen King", genero: "Terror", disponible: false },
+    { id: 18, titulo: "El nombre del viento", autor: "Patrick Rothfuss", genero: "Fantasía", disponible: true },
+    { id: 19, titulo: "La ladrona de libros", autor: "Markus Zusak", genero: "Histórica", disponible: true },
+    { id: 20, titulo: "El psicoanalista", autor: "John Katzenbach", genero: "Psicológico", disponible: false }
+];
+
+export function apiGet(){
+    
+    return libros;
+}
+
+//update element
+export function apiPut(id){
+    const libro =libros.find((l)=>l.id==id);
+    libro.disponible = !libro.disponible;
+    console.log(libro);
+    actualizarStorage();
+}
+
+export function apiPost(newLibro) {
+    newLibro.id=libros.length+1;
+    libros.push(newLibro);
+    actualizarStorage();
+}
+function actualizarStorage(){
+    localStorage.setItem(libros, JSON.stringify(libros)); //obj a json
+}

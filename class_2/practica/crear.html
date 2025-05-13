@@ -33,7 +33,7 @@
                 <h2>Registrar Libro</h2>
             </hgroup>
             <section class="article__main">
-                <form action="" class="form">
+                <form action="" class="form" id="formCreate">
                     <section class="form__input-container">
                         <label class="form__label" for="title">Titulo</label>
                         <input class="form__input" type="text" id="titulo" placeholder="Ingresa el titulo" required>
@@ -48,7 +48,7 @@
                             <option value="" disabled selected>--Seleciona--</option>
                             <option value="romance">Romance</option>
                             <option value="terror">terror</option>
-                            <option value="ciencia-ficion">ciencia ficion</option>
+                            <option value="ciencia-ficion">Fición</option>
                             <option value="psicologia">Psicologia</option>
                             <option value="suspenso">Suspenso</option>
                             <option value="otro">Otro</option>
@@ -59,6 +59,8 @@
             </section>
         </article>
     </main>
+    <script type="module" src="./form.js"></script>
+    <script type="module" src="./app.js"></script>
 </body>
 
 </html>
