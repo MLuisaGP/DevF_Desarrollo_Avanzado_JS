@@ -1,5 +1,5 @@
 
-let libros = JSON.parse(localStorage.getItem(libros)||[])  || [
+let librosDefault = [
     { id: 1, titulo: "Cien años de soledad", autor: "Gabriel García Márquez", genero: "Ficción", disponible: true },
     { id: 2, titulo: "1984", autor: "George Orwell", genero: "Suspenso", disponible: false },
     { id: 3, titulo: "Orgullo y prejuicio", autor: "Jane Austen", genero: "Romance", disponible: true },
@@ -22,24 +22,42 @@ let libros = JSON.parse(localStorage.getItem(libros)||[])  || [
     { id: 20, titulo: "El psicoanalista", autor: "John Katzenbach", genero: "Psicológico", disponible: false }
 ];
 
-export function apiGet(){
-    
+
+
+export function get() {
+    let libros = localStorage.getItem('libros');
+    if (!libros) {
+        localStorage.setItem('libros', JSON.stringify(librosDefault));
+        libros = localStorage.getItem('libros');
+    }
+    libros = JSON.parse(libros);
     return libros;
 }
 
 //update element
-export function apiPut(id){
-    const libro =libros.find((l)=>l.id==id);
-    libro.disponible = !libro.disponible;
-    console.log(libro);
-    actualizarStorage();
+export function put(id) {
+    const libros = get();
+    const libro = libros.find((l) => l.id == id);
+
+    if (libro) {
+        libro.disponible = (!libro.disponible);
+    }
+    actualizarStorage(libros);
+    return libro.disponible;
+
 }
 
-export function apiPost(newLibro) {
-    newLibro.id=libros.length+1;
-    libros.push(newLibro);
-    actualizarStorage();
+export function post(newLibro) {
+    const libros = get();
+    const libro = {
+        id: libros.length + 1,
+        ...newLibro,
+        disponible: true
+    }
+
+    libros.push(libro);
+    actualizarStorage(libros);
 }
-function actualizarStorage(){
-    localStorage.setItem(libros, JSON.stringify(libros)); //obj a json
+export function actualizarStorage(libros) {
+    localStorage.setItem('libros', JSON.stringify(libros)); //obj a json
 }

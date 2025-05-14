@@ -33,17 +33,17 @@
                 <h2>Registrar Libro</h2>
             </hgroup>
             <section class="article__main">
-                <form action="" class="form" id="formCreate">
+                <form  class="form" id="formCreate">
                     <section class="form__input-container">
                         <label class="form__label" for="title">Titulo</label>
-                        <input class="form__input" type="text" id="titulo" placeholder="Ingresa el titulo" required>
+                        <input class="form__input" type="text" id="titulo" name="titulo" placeholder="Ingresa el titulo" required>
                     </section>
                     <section class="form__input-container">
-                        <label class="form__label" for="title">Autor</label>
-                        <input class="form__input" type="text" id="autor" placeholder="Ingresa el Autor" required>
+                        <label class="form__label" for="autor">Autor</label>
+                        <input class="form__input" type="text" id="autor" name="autor" placeholder="Ingresa el Autor" required>
                     </section>
                     <section class="form__input-container">
-                        <label class="form__label" for="title">Genero</label>
+                        <label class="form__label" for="genero">Genero</label>
                         <select class="form__input form__input--selector" name="genero" id="genero" required>
                             <option value="" disabled selected>--Seleciona--</option>
                             <option value="romance">Romance</option>
@@ -59,8 +59,8 @@
             </section>
         </article>
     </main>
-    <script type="module" src="./form.js"></script>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./src/js/form.js"></script>
+    <script type="module" src="./src/js/app.js"></script>
 </body>
 
 </html>

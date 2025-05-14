@@ -9,7 +9,7 @@ a {
 
 body {
   background-color: #D9D9D9;
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -209,15 +209,15 @@ body {
   background-color: #FFF;
   box-sizing: border-box;
   width: 80%;
-  height: 80vh;
+  max-height: 80vh;
   border-radius: 0.5rem;
   box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
   padding: clamp(0.2rem, 2vw, 5rem);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
-  gap: clamp(1rem, 2vw, 3rem);
+  align-items: center;
+  gap: clamp(1rem, 2vw, 4rem);
   overflow: hidden;
 }
 @media screen and (max-width: 50em) {
@@ -226,28 +226,21 @@ body {
   }
 }
 .article__titulos {
-  width: 100%;
-  font-size: clamp(1.5rem, 2vw, 2rem);
+  font-size: clamp(1.5rem, 2vw, 3rem);
   font-weight: 700;
   color: #CA6144;
   text-align: center;
 }
 .article__main {
-  padding: 1rem;
+  box-sizing: border-box;
   width: 100%;
-  flex: 1;
-  overflow-x: scroll;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  max-height: 50rem;
+  overflow-y: scroll;
 }
 
 .tabla {
   box-sizing: border-box;
   width: 100%;
-  overflow: scroll;
 }
 .tabla__header {
   background-color: #566683;

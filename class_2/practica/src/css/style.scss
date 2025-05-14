@@ -43,7 +43,7 @@ a {
 
 body {
     background-color: $color-whitebg;
-    height: 100vh;
+    height: 100%;
     display: flex;
     align-items: center;
 
@@ -241,6 +241,7 @@ body {
 }
 
 .main {
+    
     width: 100%;
     @include containerFlex(column, center, center, 2rem);
 }
@@ -249,36 +250,37 @@ body {
     background-color: $color-white;
     box-sizing: border-box;
     width: 80%;
-    height: 80vh;
+    max-height: 80vh;
     border-radius: 0.5rem;
     box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.1);
     padding: clamp(0.2rem, 2vw, 5rem);
-    @include containerFlex(column, flex-start, flex-start, clamp(1rem, 2vw, 3rem));
+
+    @include containerFlex(column, center, flex-start, clamp(1rem, 2vw, 4rem));
     overflow: hidden;
     @include mobile() {
         width: 90%;
         }
     &__titulos {
-        width: 100%;
-        font-size: clamp(1.5rem, 2vw, 2rem);
+        font-size: clamp(1.5rem, 2vw, 3rem);
         font-weight: 700;
         color: $color-third;
         text-align: center;
     }
 
     &__main {
-        padding: 1rem;
+        box-sizing: border-box;
         width: 100%;
-        flex: 1;
-        overflow-x: scroll;
-        @include containerFlex();
+        // @include containerFlex(); //Me estaba causando mas problemas que ayudar
+        max-height: 50rem;
+        overflow-y: scroll;
     }
 }
 
 .tabla {
     box-sizing: border-box;
+    // max-height: 5rem;
     width: 100%;
-    overflow: scroll;
+    // overflow: scroll;
 
     &__header {
         background-color: $color-secundary;
