@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     e.preventDefault();
                     const labelNotif = document.getElementById('labelNoEmptyCart');
                     labelNotif.className = 'notificacion';
-                    add2cart(producto)
+                    add2cart(producto,productobtnIcon)
                 })
 
                 divInf.appendChild(productoPrecio);
@@ -61,17 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
 function marcarNotificacion() {
     const labelNotif = document.getElementById('labelNoEmptyCart');
     let cart = localStorage.getItem('cart');
-    if (cart && cart.length > 1) {
+    if (cart && JSON.parse(cart).length > 0) {
         labelNotif.className = 'notificacion';
     } else {
         labelNotif.className = '';
     }
 }
 
-function add2cart(producto) {
+function add2cart(producto,productobtnIcon) {
+    
     let cart = localStorage.getItem('cart');
     cart = JSON.parse(cart) || [];
-    let productoFind = cart.find((ele) => ele.id === producto.id)
+    let productoFind = cart.find((ele) => ele.id === producto.id);
+    
     if (productoFind) {
         productoFind.cantidad += 1;
     } else {
@@ -81,5 +83,10 @@ function add2cart(producto) {
         })
     }
     localStorage.setItem('cart', JSON.stringify(cart));
+    productobtnIcon.className='fa-solid fa-check';
+    
+    setTimeout(()=>{
+        productobtnIcon.className='fa-solid fa-cart-plus';
 
+    },2000)
 }
