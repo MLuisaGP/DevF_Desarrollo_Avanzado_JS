@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                 card.classList.add('card');
 
                 const divImg = document.createElement('DIV');
-                divImg.className = 'producto-img';
+                divImg.className = 'producto__img';
                 const productoImg = document.createElement('IMG');
                 productoImg.src = producto.image;
                 divImg.appendChild(productoImg);
@@ -21,9 +21,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 
                 const divInf = document.createElement('DIV');
-                divInf.className = 'producto-inf';
+                divInf.className = 'producto__inf';
 
                 const productoPrecio = document.createElement('P');
+                productoPrecio.className = 'producto__precio'
                 productoPrecio.textContent = `$${producto.price}`;
 
                 const productobtn = document.createElement('BTN');
