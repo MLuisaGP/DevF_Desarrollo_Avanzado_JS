@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
-    const container = document.getElementById('characterContainer');
+    const container = document.getElementById('productsContainer');
 
     fetch('https://fakestoreapi.com/products')
         .then(response => response.json()) //Convierte la respuesta en json
@@ -7,17 +7,38 @@ document.addEventListener('DOMContentLoaded',()=>{
             
             const productos = data;
             productos.forEach(producto => {
-                const card = document.createElement('section');
+                const card = document.createElement('SECTION');
                 card.classList.add('card');
 
-                const productoImg = document.createElement('img');
+                const divImg = document.createElement('DIV');
+                divImg.className = 'producto-img';
+                const productoImg = document.createElement('IMG');
                 productoImg.src = producto.image;
+                divImg.appendChild(productoImg);
 
-                const productoName = document.createElement('h2');
+                const productoName = document.createElement('H2');
                 productoName.textContent = producto.title;
 
-                card.appendChild(productoImg);
+
+                const divInf = document.createElement('DIV');
+                divInf.className = 'producto-inf';
+
+                const productoPrecio = document.createElement('P');
+                productoPrecio.textContent = `$${producto.price}`;
+
+                const productobtn = document.createElement('BTN');
+                productobtn.className='btn-cart';
+
+                const productobtnIcon = document.createElement('I');
+                productobtnIcon.className ='fa-solid fa-cart-plus';
+                productobtn.appendChild(productobtnIcon);
+
+                divInf.appendChild(productoPrecio);
+                divInf.appendChild(productobtn);
+
+                card.appendChild(divImg);
                 card.appendChild(productoName);
+                card.appendChild(divInf);
                
                 container.appendChild(card);
             });
