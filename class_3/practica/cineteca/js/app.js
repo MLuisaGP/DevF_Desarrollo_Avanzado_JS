@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         setPeliculas(lang);
     })
+    setPeliculas(lang);
     
 });
 
