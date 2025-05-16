@@ -18,22 +18,41 @@
     <header>
         <h1>Nuvio</h1>
         <nav>
-            <a class="cart-link"href='./index.html'>
+            <a class="cart-link" href='./index.html'>
                 <i class="fa-solid fa-house"></i>
+                
             </a>
         </nav>
     </header>
-    <main>
-        <section class="container" id="productCard">
 
+    <main>
+        <section class="cart__empty " id="cartEmpty">
+            <p>Aun no tienes nada en el carrito</p>
+            <div class="cart__img">
+                <img src="./img/empty-cart.png" alt="carrito vacio">
+            </div>
+        </section>
+        <section class="container-cart" id="productCart">
+            <h1>Carrito</h1>
+            <table class="tbl" id="tblCart">
+                <tbody id="tblCartBody">
+
+                </tbody>
+                <tfoot id="tblCartFoot">
+
+                </tfoot>
+            </table>
+            <section class="foot_cart">
+                <p>Total: <span id="totalPrecio">$0</span></p>
+                <button class="btn--comprar" id="btnComprar">Comprar</button>
+            </section>
         </section>
     </main>
     <footer>
         <p>Copyright &copy; 2025 <a target="_blank" href="https://github.com/MLuisaGP">MluisaG</a>
         </p>
-        <p>Esta pagina dio uso de la api<a target="_blank" href="https://developer.themoviedb.org/">The Movie DB</a>
+        <p>Esta pagina dio uso de la api <a target="_blank" href="https://fakestoreapi.com/">Fake Store Api</a>
         </p>
-
     </footer>
     <script src="js/cart.js"></script>
 </body>
