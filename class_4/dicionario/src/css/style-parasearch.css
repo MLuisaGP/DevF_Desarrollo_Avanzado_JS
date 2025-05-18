@@ -1,0 +1,23 @@
+input[type="search"] {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="search"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/*input[type="search"]::-webkit-search-cancel-button {*/
+/*    -webkit-appearance: none;*/
+    /* Elimina el icono de borrar de Safari */
+/*    background: url('https://cdn-icons-png.flaticon.com/512/3221/3221897.png') no-repeat center center / cover;*/
+    /* Muestra tu propio icono */
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    cursor: pointer;*/
+/*}*/
+
