@@ -114,7 +114,10 @@ input[type="submit"] {
     font-size: 1.2rem;
     line-height: 2rem;
 }
-
+.no-search{
+    text-align: center;
+    font-size: 1.4rem;
+}
 footer {
     background-color: var(--darkpurple);
     display: flex;
