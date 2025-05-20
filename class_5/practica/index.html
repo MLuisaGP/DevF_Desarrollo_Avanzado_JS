@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+    <title>TechConf 2025</title>
+</head>
+
+<body>
+    <main>
+        <section class="sct-img">
+            <h1>#TechConf 2025</h1>
+            <a href="#registro">Registrate</a>
+        </section>
+        
+        <section class="sct-form" id="registro">
+            <h2>Registro de Evento</h2>
+            <p class="alerta">Esto es una alerta</p>
+            <form id="registroEvento" class="form">
+                <div class="input">
+                    <label for="nombre">Nombre completo:</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Nombre Completo">
+                    <p class="alert-p-err">Ingrese un nombre válido.</p>
+                </div>
+
+                <div class="input">
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" id="correo" name="correo" required placeholder="Correo">
+                </div>
+
+                <div class="input">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="telefono">
+                </div>
+                <div class="input">
+                    <label>Intereses:</label>
+                    <label><input type="checkbox" name="intereses" value="tecnología"> Tecnología</label>
+                    <label><input type="checkbox" name="intereses" value="negocios"> Negocios</label>
+                    <label><input type="checkbox" name="intereses" value="arte"> Arte</label>
+                </div>
+
+                <fieldset class="form-time">
+
+                    <div class="input input-horario">
+                        <label>Horario preferido:</label>
+                        <label><input type="radio" name="horario" value="mañana" required> Mañana</label>
+                        <label><input type="radio" name="horario" value="tarde"> Tarde</label>
+                        <label><input type="radio" name="horario" value="noche"> Noche</label>
+                    </div>
+                    <div class="input">
+                        <label for="fecha">Fecha del evento:</label>
+                        <input type="date" id="fecha" name="fecha" required>
+                    </div>
+                    <div class="input">
+                        <label for="hora">Hora preferida:</label>
+                        <input type="time" id="hora" name="hora" required min="09:00" max="17:00">
+                    </div>
+                </fieldset>
+                <div class="input">
+                    <label for="archivo">Documento de identificación (opcional):</label>
+                    <input type="file" id="archivo" name="archivo" accept=".png,image/png">
+                </div>
+
+                <button type="submit" >Registrarse</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="src/js/app.js"></script>
+</body>
+
+</html>
