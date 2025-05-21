@@ -73,7 +73,7 @@ async function getApi(word){
         .then(data => data)
         .catch(err => {
             console.error('Error fetching data', err);
-            return '<p>Fallo la carga de personajes.</p>'
+            return 
         });
 
     return inf;
