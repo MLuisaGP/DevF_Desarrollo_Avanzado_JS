@@ -1,4 +1,10 @@
 {
+  "name": "mi-app",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node main.js"
+  },
   "dependencies": {
     "zod": "^3.25.9"
   }
