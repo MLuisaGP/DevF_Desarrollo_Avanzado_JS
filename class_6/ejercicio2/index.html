@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSBY</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <p class="alerta" id ="err"></p>
+    <form action="" id="form">
+        <div>
+            <label for="nombre">Nombre</label>
+            <input type="txt" name="nombre" id="nombre" required>
+        </div>
+        <div>
+            <label for="rfc">RFC</label>
+            <input type="txt" name="rfc" id="rfc" >
+        </div>
+        <div>
+            <label for="mnto">Monto Incial</label>
+            <input type="money" name="mnto" id="mnto">
+        </div>
+        <div>
+            <label for="email">Correo</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+        <div>
+            <label for="fchNac">fecha de nacimiento</label>
+            <input type="date" name="fchNac" id="fchNac" required>
+        </div>
+        <div>
+            <label for="type">Tipo de cuenta</label>
+            <select id="type" required>
+                <option value="" disabled selected>Selecciona un tipo</option>
+                <option value="ahorro">Ahorro</option>
+                <option value="nomina">Nomina</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Registrarte">
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/zod@3.21.4/lib/index.umd.min.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

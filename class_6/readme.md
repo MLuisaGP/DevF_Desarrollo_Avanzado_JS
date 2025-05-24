@@ -4,3 +4,8 @@ Para instalar Zod
 
 Para importar el proyecto
     import {z} from 'zod';
+
+
+Correr el servidor 
+
+    npx server
